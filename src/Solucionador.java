@@ -5,7 +5,7 @@ import data_structure.list.LinkedList;
 import data_structure.grahs.UndirectLabelGraph;
 
 
-public class SolucionadorLaberinto {
+public class Solucionador {
 
     
     public UndirectLabelGraph<String> mazeToGraph(char[][] maze) {

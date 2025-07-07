@@ -3,19 +3,19 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class GUILaberinto extends JFrame {
+public class Laberinto extends JFrame {
     private Prim2 primGenerator;
-    private SolucionadorLaberinto mazeSolver;
+    private Solucionador mazeSolver;
     private PanelLaberinto mazePanel;
 
     private JSpinner rowsSpinner;
     private JSpinner colsSpinner;
 
-    public GUILaberinto() {
+    public Laberinto() {
         super("Generador y Solucionador de Laberintos");
 
         primGenerator = new Prim2();
-        mazeSolver = new SolucionadorLaberinto();
+        mazeSolver = new Solucionador();
         mazePanel = new PanelLaberinto();
 
         initComponents();
@@ -112,7 +112,7 @@ public class GUILaberinto extends JFrame {
         // Ejecutar la interfaz gráfica en el hilo de despacho de eventos de Swing
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                new GUILaberinto();
+                new Laberinto();
             }
         });
     }
