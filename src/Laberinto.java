@@ -21,8 +21,8 @@ public class Laberinto extends JFrame {
         initComponents();
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        pack(); 
-        setLocationRelativeTo(null); 
+        pack();
+        setLocationRelativeTo(null);
         setVisible(true);
     }
 
@@ -62,7 +62,7 @@ public class Laberinto extends JFrame {
 
         add(controlPanel, BorderLayout.NORTH);
 
-        JScrollPane scrollPane = new JScrollPane(mazePanel); 
+        JScrollPane scrollPane = new JScrollPane(mazePanel);
         add(scrollPane, BorderLayout.CENTER);
     }
 
@@ -72,44 +72,48 @@ public class Laberinto extends JFrame {
 
         try {
             char[][] newMaze = primGenerator.generar(rows, cols);
-            mazePanel.setMaze(newMaze); 
+            mazePanel.setMaze(newMaze);
 
             pack();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Error al generar el laberinto: " + ex.getMessage(),
-                                          "Error", JOptionPane.ERROR_MESSAGE);
+                    "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
         }
     }
 
     private void solveMaze() {
-        char[][] currentMaze = mazePanel.getMaze(); 
+        char[][] currentMaze = mazePanel.getMaze();
         if (currentMaze == null) {
-            JOptionPane.showMessageDialog(this, "Primero genera un laberinto.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Primero genera un laberinto.", "Advertencia",
+                    JOptionPane.WARNING_MESSAGE);
             return;
+            
         }
 
         try {
             data_structure.list.LinkedList<Prim2.Point> path = mazeSolver.solve(currentMaze);
             if (path != null && path.getLength() > 0) {
- if (path != null && path.getLength() > 0) {
-    mazePanel.animateSolution(path.toArray(), 50, () -> {
-        JOptionPane.showMessageDialog(this, "Laberinto resuelto con éxito!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-    });
-}
-} else {
-    mazePanel.setSolutionPath(null);
-    JOptionPane.showMessageDialog(this, "No se encontró una solución para el laberinto.", "Sin Solución", JOptionPane.WARNING_MESSAGE);
-}
+                if (path != null && path.getLength() > 0) {
+                    mazePanel.animateSolution(path.toArray(), 50, () -> {
+                        JOptionPane.showMessageDialog(this, "Laberinto resuelto con éxito!", "Éxito",
+                                JOptionPane.INFORMATION_MESSAGE);
+                    });
+                }
+            } else {
+                mazePanel.setSolutionPath(null);
+                JOptionPane.showMessageDialog(this, "No se logro encontrar una solucion al laberinto.", "Sin Solución",
+                        JOptionPane.WARNING_MESSAGE);
+            }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Error al resolver el laberinto: " + ex.getMessage(),
-                                          "Error", JOptionPane.ERROR_MESSAGE);
+                    "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
         }
     }
 
     public static void main(String[] args) {
-        // Ejecutar la interfaz gráfica en el hilo de despacho de eventos de Swing
+    
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 new Laberinto();

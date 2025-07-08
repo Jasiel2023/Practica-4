@@ -1,6 +1,4 @@
-// src/Prim2.java
 
-// Importa tu clase LinkedList personalizada
 import data_structure.list.LinkedList;
 
 /**
