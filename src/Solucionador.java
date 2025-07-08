@@ -49,7 +49,7 @@ public class Solucionador {
         // Encuentra inicio y fin
         String startLabel = null, endLabel = null;
         for (int r = 0; r < rows; r++) {
-            for (int c = 0; c < cols; c++) {
+            for (int c = 0; c < cols; c++) { 
                 if (maze[r][c] == 'S')
                     startLabel = r + "," + c;
                 if (maze[r][c] == 'E')
